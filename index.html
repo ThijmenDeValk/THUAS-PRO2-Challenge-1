@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Template</title>
+        <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;700&display=swap" rel="stylesheet"> 
+		<script src="assets/js/main.js" defer></script>
+	</head>
+	<body>
+        <div class="container">
+            <h1>Interplanetary Transport System Interface</h1>
+            
+            <div id="system-status" class="block block--double block--system-status">
+                <h3>System status</h3>
+                <p>Correcting speed deviation</p>
+                <p>System operating nominally</p>
+            </div>
+            <div id="oxygen" class="block block--small">
+                <b class="status"></b>
+                <p class="result"><span>----</span> %</p>
+                <h3>Oxygen</h3>
+            </div>
+
+            <div id="gravity" class="block block--small">
+                <b class="status"></b>
+                <p class="result"><span>----</span> g</p>
+                <h3>Gravity</h3>
+            </div>
+
+            <div id="fuel" class="block block--small">
+                <b class="status"></b>
+                <p class="result"><span>----</span> %</p>
+                <h3>Fuel</h3>
+            </div>
+
+            <div id="power" class="block block--small">
+                <b class="status"></b>
+                <p class="result"><span>--</span> kWh</p>
+                <h3>Power usage</h3>
+            </div>
+
+            <div id="speed" class="block">
+                <b class="status"></b>
+                <p class="result"><span>--</span> km/s</p>
+                <h3>Speed</h3>
+            </div>
+
+            <div id="acceleration" class="block">
+                <b class="status"></b>
+                <p class="result"><span>--</span> g</p>
+                <h3>Acceleration</h3>
+            </div>
+
+            <div id="distance" class="block">
+                <b class="status"></b>
+                <p class="result"><span>--</span> km</p>
+                <h3>Distance traveled</h3>
+            </div>
+
+            <div class="block block--double">
+                <b class="status status--info"></b>
+                <form id="form-gravity-conversion">
+                    <p class="result"><span>--</span> kg</p>
+                    <input type="number" name="input" step="0.01" min="0" placeholder="--" required>
+                    <div class="settings">
+                        <label>
+                            <input type="radio" name="type" value="mars" checked>
+                            Earth > Mars
+                        </label>
+                        <label>
+                            <input type="radio" name="type" value="earth">
+                            Mars > Earth
+                        </label>
+                    </div>
+                    <button type="submit">Convert weight</button>
+                </form>
+            </div>
+
+            <div id="settings" class="block">
+                <button type="submit">Trigger power outage</button>
+                <h3>Danger zone</h3>
+            </div>
+        </div>
+	</body>
+</html>
