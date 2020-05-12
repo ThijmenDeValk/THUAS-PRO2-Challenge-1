@@ -2,63 +2,72 @@
 <html lang="en-US">
 	<head>
 		<meta charset="utf-8">
-		<title>Interplanetary Transport System Interface</title>
+        <title>Interplanetary Transport System Interface</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;700&display=swap" rel="stylesheet"> 
 		<script src="assets/js/main.js" defer></script>
 	</head>
 	<body>
-        <div class="container">
-            <h1>Interplanetary Transport System Interface</h1>
+        <main class="container">
+            <h1>
+                <img src="assets/img/logo.svg" alt="SpaceX" class="logo">
+                Interplanetary Transport System Interface
+            </h1>
             
-            <div id="system-status" class="block block--double block--system-status">
+            <section id="system-status" class="block block--full block--center">
                 <h3>System status</h3>
-                <p>Correcting speed deviation</p>
-                <p>System operating nominally</p>
-            </div>
-            <div id="oxygen" class="block block--small">
+                <p class="system-status">--</p>
+            </section>
+
+            <section id="oxygen" class="block block--small">
                 <b class="status"></b>
                 <p class="result"><span>----</span> %</p>
                 <h3>Oxygen</h3>
-            </div>
+            </section>
 
-            <div id="gravity" class="block block--small">
+            <section id="gravity" class="block block--small">
                 <b class="status"></b>
                 <p class="result"><span>----</span> g</p>
                 <h3>Gravity</h3>
-            </div>
+            </section>
 
-            <div id="fuel" class="block block--small">
+            <section id="fuel" class="block block--small">
                 <b class="status"></b>
                 <p class="result"><span>----</span> %</p>
                 <h3>Fuel</h3>
-            </div>
+            </section>
 
-            <div id="power" class="block block--small">
+            <section id="power" class="block block--small">
                 <b class="status"></b>
                 <p class="result"><span>--</span> kWh</p>
                 <h3>Power usage</h3>
-            </div>
+            </section>
 
-            <div id="speed" class="block">
+            <section id="speed" class="block">
                 <b class="status"></b>
                 <p class="result"><span>--</span> km/s</p>
                 <h3>Speed</h3>
-            </div>
+            </section>
 
-            <div id="acceleration" class="block">
-                <b class="status"></b>
-                <p class="result"><span>--</span> g</p>
-                <h3>Acceleration</h3>
-            </div>
-
-            <div id="distance" class="block">
+            <section id="distance" class="block">
                 <b class="status"></b>
                 <p class="result"><span>--</span> km</p>
                 <h3>Distance traveled</h3>
-            </div>
+            </section>
 
-            <div class="block block--double">
+            <section id="acceleration" class="block block--small">
+                <b class="status"></b>
+                <p class="result"><span>--</span> g</p>
+                <h3>Acceleration</h3>
+            </section>
+
+            <section id="acceleration-options" class="block block--center block--small">
+                <button id="acceleration-boost" data-direction="boost">Boost</button>
+                <button id="acceleration-break" data-direction="break">Break</button>
+            </section>
+
+            <section class="block block--double">
                 <b class="status status--info"></b>
                 <form id="form-gravity-conversion">
                     <p class="result"><span>--</span> kg</p>
@@ -75,11 +84,7 @@
                     </div>
                     <button type="submit">Convert weight</button>
                 </form>
-            </div>
-
-            <div id="settings" class="block block--power-outage">
-                <button type="submit">Trigger power outage</button>
-            </div>
-        </div>
+            </section>
+        </main>
 	</body>
 </html>

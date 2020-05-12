@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+::selection {
+    background: #666;
+    color: #ccc;
+}
+
 body {
     background: #222;
     color: #ccc;
@@ -23,6 +28,11 @@ h3 {
     margin: 0;
 }
 
+.logo {
+    height: 1.17rem;
+    margin-right: -1.5rem;
+}
+
 .container {
     width: 100%;
     margin: 0 auto;
@@ -41,14 +51,34 @@ h3 {
     border-radius: .5rem;
     text-align: center;
     position: relative;
-    grid-column-end: span 2;
+    grid-column-end: span 4;
 }
 .block--small {
-    grid-column-end: span 1;   
+    grid-column-end: span 2;   
 }
-
 .block--double {
     grid-row-end: span 2;
+}
+.block--center {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+@media only screen and (min-width: 800px) {
+    .block {
+        grid-column-end: span 2;
+    }
+    .block--small {
+        grid-column-end: span 1;
+    }
+    .block--full {
+        grid-column-end: span 4;
+    }    
+}
+
+.system-status {
+    margin-bottom: 0;
 }
 
 .result {
@@ -91,6 +121,9 @@ button {
     cursor: pointer;
     border-radius: .25rem;
     text-transform: uppercase;
+}
+button:first-child {
+    margin-top: 0;
 }
 
 .status {
