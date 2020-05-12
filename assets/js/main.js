@@ -1,9 +1,17 @@
+/*
+ *  DATA
+ *
+ *  Never update the data directly: use a updateWhatever() function for that
+ */
+
+// This houses all the ship data
 function Ship() {
   this.oxygen = Math.random() * .05 + .9;
   this.fuel = Math.random() * .05 + .95;
   this.acceleration = 0;
   this.speed = Math.random() * (10 - 7 + 1) + 7;
   this.boosting = false;
+
   this.updateSpeed = function() {
     let wiggle = this.acceleration;
 
@@ -34,11 +42,13 @@ function Ship() {
   }
 }
 
+// This houses all the ship environment data
 function Environment() {
   this.gravity = Math.random() * .05 + 1;
   this.gravityFailing = true;
   this.distance = Math.random() * (10000 - 2000 + 1) + 2000;
   this.power = Math.round(Math.random() * (400 - 300 + 1) + 300);
+
   this.updateDistance = function() {
     this.distance = this.distance + ship.speed;
     return this.distance;
@@ -53,23 +63,103 @@ function Environment() {
   }
 }
 
+// Dictionary for the error messages, which are...
+const errorDict = {
+  'good': 'Systems operating nominally',
+  'speed': 'Correcting speed deviation',
+  'power': 'Power outage',
+}
+
+// ... managed right here!
+function SystemStatus() {
+  this.status = true;
+  this.errors = [];
+  this.throwError = function(error, status) {
+    if (this.errors.indexOf(error) > -1) {
+      return;
+    }
+
+    this.errors.push(error);
+
+    const statusCheck = setInterval(() => {
+      if (!status) {
+        clearInterval(statusCheck);
+      }
+    }, 250);
+  }
+  this.resolveError = function(error) {
+    const errorIndex = this.errors.indexOf(error);
+    if (errorIndex === -1) {
+      return;
+    }
+
+    delete this.errors[errorIndex];
+  }
+  this.getErrors = function() {
+    if (this.errors.length < 1) {
+      return [ 'good' ];
+    }
+    
+    return this.errors;
+  }
+}
+
+/*
+ *  HELPER FUNCTIONS
+ *
+ */
+
+/**
+ * Convert a floating point number to a percentage with 1 decimal
+ * 
+ * @param {float} float 
+ * @returns {string} A percentage
+ */
 function floatToPercentage(float) {
   return (float * 100).toFixed(1);
 }
 
-function updateValue(name, value, statusValue) {
+/**
+ * Updates a value in the UI
+ * 
+ * @param {string} name ID of the element that needs to be updated in the UI
+ * @param {string} value Value that needs to be displayed in the UI
+ * @param {boolean} hasError Will show a red warning dot in the UI if `true`
+ */
+function updateValue(name, value, hasError) {
   const target = document.querySelector(`#${ name } .result span`);
   target.innerHTML = value;
 
   const status = document.querySelector(`#${ name } .status`);
 
-  if (statusValue) {
+  let statusValue = 'good';
+  if (hasError) {
     statusValue = 'bad';
-  } else {
-    statusValue = 'good';
   }
+
   status.className = `status status--${ statusValue }`;
 }
+
+/**
+ * Converts the gravities of Earth and Mars
+ * 
+ * @param {*} event The event of submitting the form
+ */
+async function gravityConversion(event) {
+  event.preventDefault();
+  const formData = new FormData(event.target);
+
+  const { default:convertGravity } = await import('./helpers/gravityConvert.js');
+  const result = convertGravity(formData.get('input'), formData.get('type'));
+
+  const target = event.target.querySelector('.result span');
+  target.innerHTML = result;
+}
+
+/*
+ *
+ *
+ */
 
 function refreshSpeed() {
   ship.updateSpeed();
@@ -101,17 +191,6 @@ function refreshEnvironmentInfo() {
 function refreshData() {
   environment.updateDistance();
   environment.updateGravity();
-}
-
-async function gravityConversion(event) {
-  event.preventDefault();
-  const formData = new FormData(event.target);
-
-  const { default:convertGravity } = await import('./helpers/gravityConvert.js');
-  const result = convertGravity(formData.get('input'), formData.get('type'));
-
-  const target = event.target.querySelector('.result span');
-  target.innerHTML = result;
 }
 
 /*
