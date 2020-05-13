@@ -15,6 +15,9 @@
                 Interplanetary Transport System Interface
             </h1>
             
+            <!-- Every block is one of the dashboard items -->
+            <!-- The amount of '---' corresponds with the expected size of the data, to
+                 prevent an ugly UI shift on update -->
             <section id="system-status" class="block block--full block--center">
                 <h3>System status</h3>
                 <p class="system-status">--</p>
@@ -40,25 +43,25 @@
 
             <section id="power" class="block block--small">
                 <b class="status"></b>
-                <p class="result"><span>--</span> kWh</p>
+                <p class="result"><span>---</span> kWh</p>
                 <h3>Power usage</h3>
             </section>
 
             <section id="speed" class="block">
                 <b class="status"></b>
-                <p class="result"><span>--</span> km/s</p>
+                <p class="result"><span>-----</span> km/s</p>
                 <h3>Speed</h3>
             </section>
 
             <section id="distance" class="block">
                 <b class="status"></b>
-                <p class="result"><span>--</span> km</p>
+                <p class="result"><span>----</span> km</p>
                 <h3>Distance traveled</h3>
             </section>
 
             <section id="acceleration" class="block block--small">
                 <b class="status"></b>
-                <p class="result"><span>--</span> g</p>
+                <p class="result"><span>-----</span> g</p>
                 <h3>Acceleration</h3>
             </section>
 
@@ -70,7 +73,7 @@
             <section class="block block--double">
                 <b class="status status--info"></b>
                 <form id="form-gravity-conversion">
-                    <p class="result"><span>--</span> kg</p>
+                    <p class="result"><span>-----</span> kg</p>
                     <input type="number" name="input" step="0.01" min="0" placeholder="--" required>
                     <div class="settings">
                         <label>

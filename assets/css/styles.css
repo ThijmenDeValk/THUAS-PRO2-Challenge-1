@@ -1,3 +1,9 @@
+/*
+ *  SPACEX Interplanetary Transport System Interface
+ *  MADE BY THIJMEN
+ */
+
+/*  General settings first */
 * {
     box-sizing: border-box;
 }
@@ -33,6 +39,7 @@ h3 {
     margin-right: -1.5rem;
 }
 
+/*  Container and the blocks within */
 .container {
     width: 100%;
     margin: 0 auto;
@@ -77,6 +84,7 @@ h3 {
     }    
 }
 
+/* Targets for the JS to display the data */
 .system-status {
     margin-bottom: 0;
 }
@@ -98,7 +106,7 @@ h3 {
     }
 }
 
-
+/*  Form elements */
 .settings {
     font-size: .8rem;
     padding: .5rem;
@@ -130,6 +138,7 @@ button:first-child {
     margin-top: 0;
 }
 
+/*  And last but not least: the status light on every block */
 .status {
     display: block;
     position: absolute;
